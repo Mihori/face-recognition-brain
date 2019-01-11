@@ -1,13 +1,13 @@
 import React from 'react';
 
 class Signin extends React.Component {
-constructor(props) {
-  super();
-  this.state = {
-    signInEmail: '',
-    signInPassword: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      signInEmail: '',
+      signInPassword: '',
+    }
   }
-}
 
   onEmailChange = (event) => {
     this.setState({ signInEmail: event.target.value })
@@ -28,8 +28,9 @@ constructor(props) {
     })
       .then(response => response.json())
       .then(data => { 
-        if (data === 'success')
-    this.props.onRouteChange('home')
+        if (data === 'success') {
+          this.props.onRouteChange('home');
+        }
       });
   }
 
