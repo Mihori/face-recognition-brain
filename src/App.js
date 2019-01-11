@@ -88,7 +88,9 @@ class App extends Component {
             body: JSON.stringify({
               id: this.state.user.id,
             })
-          });
+          })
+      .then(res => res.json())
+      .then(count => this.setState({ ...this.state.user, entries: count }))
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
