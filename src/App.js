@@ -53,7 +53,7 @@ class App extends Component {
       entries: userData.entries,
       joined: userData.joined
     }
-    });
+  });
   }
 
   calculateFaceLocation = (data) => {
@@ -90,7 +90,7 @@ class App extends Component {
             })
           })
       .then(res => res.json())
-      .then(count => this.setState({ ...this.state.user, entries: count }))
+      .then(count => this.setState(Object.assign(this.state.user, { entries: count })))
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
@@ -116,7 +116,7 @@ class App extends Component {
         { route === 'home'
           ? <div> 
         <Logo />
-        <Rank />
+        <Rank name={this.state.user.name} entries={this.state.user.entries}/>
         <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
         <FaceRecognition box={box} imageUrl={imageUrl} />
         </div>
