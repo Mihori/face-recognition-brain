@@ -23,7 +23,7 @@ class Register extends React.Component{
   }
 
   onSubmitRegister = () => {
-    fetch('http://localhost:3000/register', {
+    fetch('http://localhost:5000/register', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -33,16 +33,15 @@ class Register extends React.Component{
       })
     })
       .then(response => response.json())
-      .then(data => { 
-        if (data === 'success') {
-          this.props.loadUser();
+      .then(user => { 
+        if (user) {
+          this.props.loadUser(user);
           this.props.onRouteChange('home');
         }
       });
   }
 
   render() {
-    const { onRouteChange } = this.props;
     return (
       <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
