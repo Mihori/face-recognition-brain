@@ -22,7 +22,7 @@ const particlesOptions = {
 }
 
 const initialState = {
-  URL: 'https://face-recognition-brain-api.herokuapp.com/',
+  URL: 'https://face-recognition-brain-api.herokuapp.com',
   input: '',
   imageUrl: '',
   box: {},
@@ -113,7 +113,7 @@ class App extends Component {
   }
 
   render() {
-    const { isSignedIn, imageUrl, route, box } = this.state
+    const { URL, isSignedIn, imageUrl, route, box } = this.state
 
     return (
       <div className="App">
@@ -127,8 +127,8 @@ class App extends Component {
         <FaceRecognition box={box} imageUrl={imageUrl} />
         </div>
           : route === 'signin'
-            ? <Signin onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
-            : <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+            ? <Signin URL={URL} onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
+            : <Register URL={URL} onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
         }
       </div>
     );
