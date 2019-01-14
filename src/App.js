@@ -22,6 +22,7 @@ const particlesOptions = {
 }
 
 const initialState = {
+  URL: 'https://face-recognition-brain-api.herokuapp.com/',
   input: '',
   imageUrl: '',
   box: {},
@@ -76,7 +77,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch('http://localhost:5000/imageurl', {
+    fetch(`${this.state.URL}/imageurl`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -86,7 +87,7 @@ class App extends Component {
       .then(response => response.json())
       .then(response => {
         if (response) {
-          fetch('http://localhost:5000/image', {
+          fetch(`${this.state.URL}/image`, {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
